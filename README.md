@@ -1,22 +1,60 @@
-# test
-Projeto API desenvolvido em .net 6.0
+# API Reprograma
 
-O seu objetivo é fazer uma WebApi desenvolvida em .net 6.0 para registros de
-interessados que vão informar o nome e e-mail para receber informações do RePrograma.
-Para isso você vai aplicar o conceito de CRUD 
-<br/>a.	Create;
-<br/>b.	Read; 
-<br/>c.	Update;
-<br/>d.	Delete.
+> `Gabriela Souza Santos`
+> `E-mail: "gaaabriela@hotmail.com`
+> `Trilha: BackEnd`
 
-O que você deverá entregar é uma WebApi que tenha as seguintes funções:
-1.	Cadastro de nome e e-mail do interessado (você deve fazer um método que realize o cadastro de nome e e-mail).
-2.	Consulta do interessado (você deve fazer um método que faça uma consulta de um nome e e-mail que já foi registrado).
-3.	Atualização de nome e e-mail (você deve fazer um método que atualize o nome e e-mail que já foi registrado).
-4.	Exclusão de interessado (você deve fazer um método que exclua um interessado através do e-mail).<br/><br/>
-Quem pretende utilizar nossa WebApi? Uma aplicação FrontEnd que foi desenhada nesse link aqui: (https://www.figma.com/file/pzyVylrT5t6IYHbBaxU64o/RePrograma-Trilha-Front-end?node-id=0%3A394) 
-Mas fique tranquila! Você irá receber um arquivo base para poder desenvolver a sua lógica. No último dia do Bootcamp você deverá entregar a sua WebApi, contendo um arquivo texto ou README.md, explicando todos os passos até a sua conclusão.
-E esta entrega deverá ser feita através do seu GITHUB pessoal, nos enviando o link para o seu repositório. Aguarde instruções para envio do link.
-Observações: No seu README você deverá colocar o seu nome completo, para podermos identificar vocês.
- 
+API desenvolvida para cadastro de usuárias interessadas em receber informações acerca do processo seletivo denominado "Reprograma". 
+
+## _Funções da API_
+- Consultar todas as interessadas cadastradas: 
+ [GET] /api/Usuario
+
+- Consultar interessadas utilizando nome e email:
+[GET] /api/Usuario/consultar/{nome}/{email}
+- Criação de usuária:
+[POST] /api/Usuario/incluir
+- Atualização das informações no cadastro das interessadas:
+[PUT] /api/Usuario/atualizar
+- Deletar usuária interessada cadastrada:
+[DELETE] /api/Usuario/excluir/{email}
+
+## _Tecnologias utilizadas_
+
+- .NET 6
+- Entity Framework Core 
+- Migrations 
+- Microsoft SQL Server 
+- Swagger 
+
+## _Instalações_
+
+- GIT Bash
+- Microsoft Visual Studio 2022
+- Postman
+- Microsoft SQL Server Express 
+- Migrations: 
+
+## _Desenvolvimento_
+
+Instalar pacotes: 
+- Microsoft.EntityFrameworkCore.SqlServer (para utilizar SQL Server)
+- Microsoft.EntityFrameworkCore.Design (para migrations)
+
+Criar pasta "Models" -> Armazenar entidades 
+`Na entidade informe todos os atributos necessários para representar a interessada como nome e e-mail`
+
+Criar pasta "Data" -> Armazenar entidade de contexto de banco de dados
+`A entidade acima representa o banco de dados, assim foi necessário a criação da classe "AppDbContext" herdando de "DbContext"`
+
+Posteriormente será necessário criar a entidade no banco de dados utilizando o Migrations com os seguintes comandos:
+```sh
+dotnet tool install --global dotnet-efMicrosoft.EntityFrameworkCore.SqlServer
+dotnet ef migrations add NOME_DA_MIGRACAO
+dotnet ef database update
+```
+Após será necessário realizar a injeção de dependência da classe AppDbContext no controller
+
+Por fim, implementar a lógica necessária para cada uma das actions criadas. 
+
 
